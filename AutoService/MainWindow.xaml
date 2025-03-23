@@ -13,9 +13,9 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="#FF76E383">
-            <Button HorizontalAlignment="Right" Content="Выход"/>
+            <Button Name="btnBack" HorizontalAlignment="Right" Content="Назад" Click="btnBack_Click"/>
             <Image Source="/logo.png" Width="45" Height="45" HorizontalAlignment="Left" Margin="5"/>
         </Grid>
-        <Frame x:Name="FrmMain" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="FrmMain" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="FrmMain_ContentRendered"/>
     </Grid>
 </Window>
