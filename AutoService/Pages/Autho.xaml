@@ -20,7 +20,7 @@
             <TextBox Name="txtLogin"/>
             <TextBlock Text="Пароль:"/>
             <TextBox Name="txtPassword"/>
-            <TextBlock Text="Капча:"/>
+            <TextBlock Name="textBlockCaptcha" Text="Капча:"/>
             <TextBox Name="txtCaptcha"/>
 
             <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Center">
