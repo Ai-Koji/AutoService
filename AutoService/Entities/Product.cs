@@ -11,7 +11,8 @@ namespace AutoService.Entities
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.InteropServices.WindowsRuntime;
+
     public partial class Product
     {
         public Product()
@@ -36,5 +37,27 @@ namespace AutoService.Entities
         public Nullable<int> MinCount { get; set; }
     
         public virtual ICollection<Order> Order { get; set; }
+
+        public string Background
+        {
+            get
+            {
+                if (this.ProductDiscountAmount > 15)
+                    return "#7fff00";
+                return "#fff";
+            }
+        }
+        public string CostWithDiscount
+        {
+            get
+            {
+                if (this.MaxDiscountAmount > 0)
+                {
+                    var costWithDiscount = Convert.ToDouble(this.ProductCost) - Convert.ToDouble(this.ProductCost) * Convert.ToDouble(this.ProductDiscountAmount / 100.00);
+                    return costWithDiscount.ToString();
+                }
+                return this.ProductCost.ToString();
+            }
+        }
     }
 }

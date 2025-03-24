@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoService.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace AutoService.Pages
         public Client()
         {
             InitializeComponent();
+
+            var product = AutoServiceEntities.GetContext().Product.ToList();
+            LViewProduct.ItemsSource = product;
         }
     }
 }
