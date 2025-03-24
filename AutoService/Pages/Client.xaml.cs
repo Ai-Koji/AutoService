@@ -27,6 +27,60 @@ namespace AutoService.Pages
 
             var product = AutoServiceEntities.GetContext().Product.ToList();
             LViewProduct.ItemsSource = product;
+            DataContext = this;
+            
+            txtAllAmount.Text = product.Count().ToString();
+
+            UpdateData();
+        }
+        public string[] SortingList { get; set; } =
+        {
+            "Без сортировки",
+            "СТоимость по возрастанию",
+            "Стоимости по убыванию"
+        };
+        public string[] FilterList { get; set; } = {
+            "Все диапазоны",
+            "0%-0,99%",
+            "10%-14,99",
+            "15% и более"
+        };
+
+        private void UpdateData()
+        {
+            var result = AutoServiceEntities.GetContext().Product.ToList();
+
+            if (cmbSorting.SelectedIndex == 1)
+                result = result.OrderBy(p => p.ProductCost).ToList();
+            if (cmbSorting.SelectedIndex == 2)
+                result = result.OrderByDescending(p => p.ProductCost).ToList();
+
+            if (cmbFilter.SelectedIndex == 1)
+                result = result.Where(p => p.ProductDiscountAmount >= 0 && p.ProductDiscountAmount < 10).ToList();
+            if (cmbFilter.SelectedIndex == 2)
+                result = result.Where(p => p.ProductDiscountAmount >= 10 && p.ProductDiscountAmount < 15).ToList();
+            if (cmbFilter.SelectedIndex == 3)
+                result = result.Where(p => p.ProductDiscountAmount >= 15).ToList();
+
+            result = result.Where(p => p.ProductName.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+
+            LViewProduct.ItemsSource = result;
+            
+            txtResultAmount.Text = result.Count().ToString();
+        }
+        private void cmbSorting_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateData();
+        }
+
+        private void cmbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateData();
+        }
+
+        private void txtSearch_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            UpdateData();
         }
     }
 }
