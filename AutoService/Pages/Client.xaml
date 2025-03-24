@@ -42,7 +42,7 @@
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
 
-                            <Image Width="100" Height="100" Margin="5"/>
+                            <Image Source="{Binding imgPath}" Width="100" Height="100" Margin="5"/>
 
                             <StackPanel Grid.Column="1" Margin="5">
                                 <TextBlock Text="{Binding ProductName}" FontWeight="Bold"/>

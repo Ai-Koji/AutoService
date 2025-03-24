@@ -59,5 +59,14 @@ namespace AutoService.Entities
                 return this.ProductCost.ToString();
             }
         }
+        public string imgPath
+        {
+            get
+            {
+                if (ProductImage == "")
+                    return "pack://application:,,,/Resources/Products/default.png";
+                return "pack://application:,,,/Resources/Products/" + ProductImage;
+            }
+        }
     }
 }

@@ -168,6 +168,17 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Products\default.png" />
+    <Resource Include="Resources\Products\A782R4.jpg" />
+    <Resource Include="Resources\Products\D374E4.jpeg" />
+    <Resource Include="Resources\Products\K830R4.jpg" />
+    <Resource Include="Resources\Products\K849L6.jpeg" />
+    <Resource Include="Resources\Products\O393R4.jpeg" />
+    <Resource Include="Resources\Products\S037R9.jpeg" />
+    <Resource Include="Resources\Products\S983R4.jpg" />
+    <Resource Include="Resources\Products\Z374R3.jpeg" />
+    <Resource Include="Resources\Products\Z469T7.jpg" />
+    <Resource Include="Resources\Products\Z472R4.jpeg" />
     <Resource Include="logo.png" />
     <None Include="Resources\logo.png" />
     <None Include="Resources\icon.ico" />
