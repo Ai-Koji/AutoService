@@ -31,7 +31,7 @@ namespace AutoService.Pages
 
         private void btnEnterGuest_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Client()); // переход на страницу неавторизованного клиента 
+            NavigationService.Navigate(new Client(null)); // переход на страницу неавторизованного клиента 
         }
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
@@ -49,13 +49,22 @@ namespace AutoService.Pages
                 if (userCount > 0) // если пароль и логин совпали в записи
                 {
                     MessageBox.Show("Вы вошли под: " + user.Role.RoleName.ToString());
-                    LoadForm(user.Role.RoleName.ToString());
+                    LoadForm(user.Role.RoleName.ToString(), user);
                 }
                 else
                 {
                     MessageBox.Show("Вы ввели неверно логин или пароль!");
                 }
-            }
+            } else
+            {
+                if (userCount > 0 && textBlockCaptcha.Text == txtCaptcha.Text)
+                {
+                    MessageBox.Show("Вывошли под: " + user.Role.RoleName.ToString());
+                    LoadForm(user.Role.RoleName.ToString(), user);
+                }
+                else
+                    MessageBox.Show("Введите данные заново!");
+            } 
         }
 
         private void GenerateCaptcha()
@@ -83,12 +92,12 @@ namespace AutoService.Pages
             }
         }
 
-        private void LoadForm(string _role)
+        private void LoadForm(string _role, User user)
         {
             switch (_role)
             {
                 case "Клиент":
-                    NavigationService.Navigate(new Client());
+                    NavigationService.Navigate(new Client(user));
                     break;
             }
         }

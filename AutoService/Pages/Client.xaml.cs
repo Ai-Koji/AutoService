@@ -21,7 +21,8 @@ namespace AutoService.Pages
     /// </summary>
     public partial class Client : Page
     {
-        public Client()
+        User user = new User();
+        public Client(User currentUser)
         {
             InitializeComponent();
 
@@ -31,7 +32,17 @@ namespace AutoService.Pages
             
             txtAllAmount.Text = product.Count().ToString();
 
+            user = currentUser;
+
             UpdateData();
+            User();
+        }
+        private void User()
+        {
+            if (user != null)
+                txtFullname.Text = user.UserSurname.ToString() + user.UserName.ToString() + " " + user.UserPatronymic.ToString();
+            else
+                txtFullname.Text = "Гость";
         }
         public string[] SortingList { get; set; } =
         {

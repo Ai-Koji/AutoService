@@ -22,6 +22,11 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right">
+            <TextBlock Text="Пользователь:"/>
+            <TextBlock x:Name="txtFullname"/>
+        </StackPanel> 
+
         <TextBox Name="txtSearch" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5, 0, 5, 0" SelectionChanged="txtSearch_SelectionChanged"/>
         <ComboBox Name="cmbSorting" Grid.Row="1" Grid.Column="1" SelectedIndex="0" VerticalAlignment="Center" Margin="5,0,5,0" ItemsSource="{Binding SortingList}" SelectionChanged="cmbSorting_SelectionChanged"/>
         <ComboBox Name="cmbFilter" Grid.Row="1" Grid.Column="2" SelectedIndex="0" VerticalAlignment="Center" Margin="5,0,5,0" ItemsSource="{Binding FilterList}" SelectionChanged="cmbFilter_SelectionChanged" />
@@ -31,7 +36,7 @@
             <TextBlock Text="из"/>
             <TextBlock x:Name="txtAllAmount"/>
         </StackPanel>
-        
+
         <ListView Name="LViewProduct" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2" Margin="5,5,5,5" d:ItemsSource="{d:SampleData ItemCount=1}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -67,7 +72,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        
     </Grid>
 </Page>
