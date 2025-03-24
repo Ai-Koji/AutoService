@@ -22,6 +22,7 @@ namespace AutoService.Pages
     public partial class Client : Page
     {
         User user = new User();
+        List<Product> orderProducts = new List<Product>();
         public Client(User currentUser)
         {
             InitializeComponent();
@@ -92,6 +93,19 @@ namespace AutoService.Pages
         private void txtSearch_SelectionChanged(object sender, RoutedEventArgs e)
         {
             UpdateData();
+        }
+
+        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            orderProducts.Add(LViewProduct.SelectedItem as Product);
+
+            if (orderProducts.Count > 0)
+                btnOrder.Visibility = Visibility.Visible;
+        }
+
+        private void btnOrder_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

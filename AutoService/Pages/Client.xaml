@@ -71,6 +71,12 @@
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.ContextMenu>
+                <ContextMenu Name="contextMenu">
+                    <MenuItem Name="btnAddProduct" Header="ДОбавить к заказу" Click="btnAddProduct_Click"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
         </ListView>
+        <Button x:Name="btnOrder" Grid.Row="3" Grid.Column="0" Content="Заказ" Visibility="Collapsed" HorizontalAlignment="Left" Width="200" Margin="20, 0, 0, 0" Click="btnOrder_Click"/>
     </Grid>
 </Page>
