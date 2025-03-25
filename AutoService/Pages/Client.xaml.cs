@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AutoService.Windows;
 
 namespace AutoService.Pages
 {
@@ -105,7 +106,8 @@ namespace AutoService.Pages
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-
+            OrderWindow order = new OrderWindow(orderProducts, user);
+            order.ShowDialog();
         }
     }
 }
