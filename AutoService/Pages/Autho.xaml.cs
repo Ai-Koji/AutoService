@@ -102,6 +102,9 @@ namespace AutoService.Pages
                 case "Менеджер":
                     NavigationService.Navigate(new Client(user));
                     break;
+                case "Администратор":
+                    NavigationService.Navigate(new Admin(user));
+                    break;
             }
         }
     }

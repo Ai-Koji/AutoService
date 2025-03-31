@@ -37,46 +37,46 @@
             <TextBlock x:Name="txtAllAmount"/>
         </StackPanel>
 
-        <ListView Name="LViewProduct" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2" Margin="5,5,5,5" d:ItemsSource="{d:SampleData ItemCount=1}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1" Background="{Binding Background}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="100"/>
-                            </Grid.ColumnDefinitions>
+            <ListView Name="LViewProduct" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2" Margin="5,5,5,5" d:ItemsSource="{d:SampleData ItemCount=1}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1" Background="{Binding Background}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
 
-                            <Image Source="{Binding imgPath}" Width="100" Height="100" Margin="5"/>
+                                <Image Source="{Binding imgPath}" Width="100" Height="100" Margin="5"/>
 
-                            <StackPanel Grid.Column="1" Margin="5">
-                                <TextBlock Text="{Binding ProductName}" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding ProductDescription}"/>
-                                <TextBlock Text="{Binding ProductManufacturer}"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding ProductCost}" TextDecorations="Strikethrough"/>
-                                    <TextBlock Text="{Binding CostWithDiscount, StringFormat='\{0} рублей'}"/>
+                                <StackPanel Grid.Column="1" Margin="5">
+                                    <TextBlock Text="{Binding ProductName}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding ProductDescription}"/>
+                                    <TextBlock Text="{Binding ProductManufacturer}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding ProductCost}" TextDecorations="Strikethrough"/>
+                                        <TextBlock Text="{Binding CostWithDiscount, StringFormat='\{0} рублей'}"/>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
 
-                            <TextBlock Grid.Column="2" Text="{Binding ProductDiscountAmount, StringFormat='\{0} %'}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" Text="{Binding ProductDiscountAmount, StringFormat='\{0} %'}" VerticalAlignment="Center"/>
 
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.ContextMenu>
-                <ContextMenu Name="contextMenu">
-                    <MenuItem Name="btnAddProduct" Header="ДОбавить к заказу" Click="btnAddProduct_Click"/>
-                </ContextMenu>
-            </ListView.ContextMenu>
-        </ListView>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ContextMenu>
+                    <ContextMenu Name="contextMenu">
+                        <MenuItem Name="btnAddProduct" Header="ДОбавить к заказу" Click="btnAddProduct_Click"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
         <Button x:Name="btnOrder" Grid.Row="3" Grid.Column="0" Content="Заказ" Visibility="Collapsed" HorizontalAlignment="Left" Width="200" Margin="20, 0, 0, 0" Click="btnOrder_Click"/>
     </Grid>
 </Page>
