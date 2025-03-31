@@ -4,16 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5f36f1ed653b4fd2b42f4cf2fd1a2768" Name="Diagram1">
-        <EntityTypeShape EntityType="AutoServiceModel.Order" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AutoServiceModel.PickupPoint" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AutoServiceModel.Product" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="AutoServiceModel.Role" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="AutoServiceModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AutoServiceModel.User" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+      <Diagram DiagramId="3d0e3eca233e4738a53dcefce94f61b4" Name="Diagram1">
+        <EntityTypeShape EntityType="AutoServiceModel.Order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoServiceModel.OrderProduct" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoServiceModel.PickupPoint" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoServiceModel.Product" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoServiceModel.Role" Width="1.5" PointX="5.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoServiceModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoServiceModel.User" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="AutoServiceModel.FK__OrderProd__Order__403A8C7D" ManuallyRouted="false" />
         <AssociationConnector Association="AutoServiceModel.FK_Order_PickupPoint" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoServiceModel.FK__OrderProd__Produ__412EB0B6" ManuallyRouted="false" />
         <AssociationConnector Association="AutoServiceModel.FK__User__UserRole__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="AutoServiceModel.OrderProduct" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

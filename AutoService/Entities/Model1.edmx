@@ -24,6 +24,7 @@
           </Key>
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="ProductArticleNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Count" Type="int" />
         </EntityType>
         <EntityType Name="PickupPoint">
           <Key>
@@ -170,8 +171,19 @@
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ClientFullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ReceiptCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderProduct" Relationship="Self.FK__OrderProd__Order__403A8C7D" FromRole="Order" ToRole="OrderProduct" />
           <NavigationProperty Name="PickupPoint" Relationship="Self.FK_Order_PickupPoint" FromRole="Order" ToRole="PickupPoint" />
-          <NavigationProperty Name="Product" Relationship="Self.OrderProduct" FromRole="Order" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="OrderProduct">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="ProductArticleNumber" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="ProductArticleNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__OrderProd__Order__403A8C7D" FromRole="OrderProduct" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__OrderProd__Produ__412EB0B6" FromRole="OrderProduct" ToRole="Product" />
         </EntityType>
         <EntityType Name="PickupPoint">
           <Key>
@@ -200,7 +212,7 @@
           <Property Name="Supplier" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="CountInPack" Type="Int32" />
           <Property Name="MinCount" Type="Int32" />
-          <NavigationProperty Name="Order" Relationship="Self.OrderProduct" FromRole="Product" ToRole="Order" />
+          <NavigationProperty Name="OrderProduct" Relationship="Self.FK__OrderProd__Produ__412EB0B6" FromRole="Product" ToRole="OrderProduct" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -233,6 +245,18 @@
           <Property Name="UserRole" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Role" Relationship="Self.FK__User__UserRole__398D8EEE" FromRole="User" ToRole="Role" />
         </EntityType>
+        <Association Name="FK__OrderProd__Order__403A8C7D">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderProduct">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_PickupPoint">
           <End Role="PickupPoint" Type="Self.PickupPoint" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -242,6 +266,18 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="OrderPickupPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderProd__Produ__412EB0B6">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductArticleNumber" />
+            </Principal>
+            <Dependent Role="OrderProduct">
+              <PropertyRef Name="ProductArticleNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -257,28 +293,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="OrderProduct">
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="AutoServiceEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="OrderProduct" EntityType="Self.OrderProduct" />
           <EntitySet Name="PickupPoint" EntityType="Self.PickupPoint" />
           <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK__OrderProd__Order__403A8C7D" Association="Self.FK__OrderProd__Order__403A8C7D">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderProduct" EntitySet="OrderProduct" />
+          </AssociationSet>
           <AssociationSet Name="FK_Order_PickupPoint" Association="Self.FK_Order_PickupPoint">
             <End Role="PickupPoint" EntitySet="PickupPoint" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
+          <AssociationSet Name="FK__OrderProd__Produ__412EB0B6" Association="Self.FK__OrderProd__Produ__412EB0B6">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderProduct" EntitySet="OrderProduct" />
+          </AssociationSet>
           <AssociationSet Name="FK__User__UserRole__398D8EEE" Association="Self.FK__User__UserRole__398D8EEE">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="OrderProduct" Association="Self.OrderProduct">
-            <End Role="Order" EntitySet="Order" />
-            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -297,6 +334,15 @@
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="ClientFullName" ColumnName="ClientFullName" />
                 <ScalarProperty Name="ReceiptCode" ColumnName="ReceiptCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderProduct">
+            <EntityTypeMapping TypeName="AutoServiceModel.OrderProduct">
+              <MappingFragment StoreEntitySet="OrderProduct">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ProductArticleNumber" ColumnName="ProductArticleNumber" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -361,14 +407,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="OrderProduct" TypeName="AutoServiceModel.OrderProduct" StoreEntitySet="OrderProduct">
-            <EndProperty Name="Order">
-              <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-            </EndProperty>
-            <EndProperty Name="Product">
-              <ScalarProperty Name="ProductArticleNumber" ColumnName="ProductArticleNumber" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

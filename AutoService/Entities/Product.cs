@@ -11,13 +11,12 @@ namespace AutoService.Entities
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.InteropServices.WindowsRuntime;
-
+    
     public partial class Product
     {
         public Product()
         {
-            this.Order = new HashSet<Order>();
+            this.OrderProduct = new HashSet<OrderProduct>();
         }
     
         public string ProductArticleNumber { get; set; }
@@ -36,37 +35,6 @@ namespace AutoService.Entities
         public Nullable<int> CountInPack { get; set; }
         public Nullable<int> MinCount { get; set; }
     
-        public virtual ICollection<Order> Order { get; set; }
-
-        public string Background
-        {
-            get
-            {
-                if (this.ProductDiscountAmount > 15)
-                    return "#7fff00";
-                return "#fff";
-            }
-        }
-        public string CostWithDiscount
-        {
-            get
-            {
-                if (this.MaxDiscountAmount > 0)
-                {
-                    var costWithDiscount = Convert.ToDouble(this.ProductCost) - Convert.ToDouble(this.ProductCost) * Convert.ToDouble(this.ProductDiscountAmount / 100.00);
-                    return costWithDiscount.ToString();
-                }
-                return this.ProductCost.ToString();
-            }
-        }
-        public string imgPath
-        {
-            get
-            {
-                if (ProductImage == "")
-                    return "pack://application:,,,/Resources/Products/default.png";
-                return "pack://application:,,,/Resources/Products/" + ProductImage;
-            }
-        }
+        public virtual ICollection<OrderProduct> OrderProduct { get; set; }
     }
 }

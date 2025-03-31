@@ -12,22 +12,13 @@ namespace AutoService.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class OrderProduct
     {
-        public Order()
-        {
-            this.OrderProduct = new HashSet<OrderProduct>();
-        }
-    
         public int OrderID { get; set; }
-        public string OrderStatus { get; set; }
-        public System.DateTime OrderDeliveryDate { get; set; }
-        public int OrderPickupPoint { get; set; }
-        public System.DateTime OrderDate { get; set; }
-        public string ClientFullName { get; set; }
-        public int ReceiptCode { get; set; }
+        public string ProductArticleNumber { get; set; }
+        public Nullable<int> Count { get; set; }
     
-        public virtual ICollection<OrderProduct> OrderProduct { get; set; }
-        public virtual PickupPoint PickupPoint { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual Product Product { get; set; }
     }
 }
