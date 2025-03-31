@@ -23,6 +23,7 @@ namespace AutoService.Windows
     {
         public OrderWindow(List<Product> products, User user)
         {
+            InitializeComponent();
             frmOrder.Navigate(new OrderPage(products, user));
         }
     }
