@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="250"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="lViewOrder" d:ItemsSource="{d:SampleData ItemCount=1}">
+        <ListView Name="lViewOrder" d:ItemsSource="{d:SampleData ItemCount=1}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
